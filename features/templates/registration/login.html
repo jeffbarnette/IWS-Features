@@ -1,0 +1,19 @@
+{% extends 'features/base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+  <h2>Please login:</h2>
+  <small>You must be an authorized user, please check with the site admin</small>
+  <br /><br />
+  {% if form.errors %}
+    <p>Your username and password did not match! Please try again.</p>
+  {% endif %}
+
+  <form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-outline-primary" value="Login">
+      <input type="hidden" name="next" value="{{next}}">
+  </form>
+</div>
+{% endblock %}

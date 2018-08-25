@@ -1,0 +1,10 @@
+{% extends "features/base.html" %}
+{% block content %}
+  {% for feature in feature %}
+    <div class="post">
+      <p class="date">Created: {{ feature.create_date|date:'d-m-Y'}}</p>
+      <h1><a href="{% url 'feature_detail' pk=feature.pk %}">{{feature.title}}</a></h1>
+      <p>{{feature.description|truncatechars:200}}</p>
+    </div>
+  {% endfor %}
+{% endblock %}

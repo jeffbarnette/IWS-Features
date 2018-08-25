@@ -1,15 +1,15 @@
 from django.db import models
 from django.utils import timezone
-from django.core.urls import reverse
+from django.urls import reverse
 
 class Feature(models.Model):
     author = models.ForeignKey('auth.User', on_delete = models.CASCADE)
     title = models.CharField(max_length=200) # Title of request
-    description = models.TextField() # Description of feature
-    client = models.CharField(max_length=200) # Client name
+    description = models.TextField(max_length=500) # Description of feature
+    client = models.ForeignKey('features.client', on_delete = models.CASCADE) # Client name
     client_priority = models.IntegerField() # Client priority
-    prod_area = models.CharField(max_length=200) # Product area
-    create_date = models.DateTimeField(default=timezone.now()) # Creation date
+    prod_area = models.ForeignKey('features.prodarea', on_delete = models.CASCADE) # Product area
+    create_date = models.DateTimeField(default=timezone.now) # Creation date
     target_date = models.DateTimeField(blank=True,null=True) # Target date
 
     def publish(self):
@@ -23,13 +23,13 @@ class Feature(models.Model):
         return reverse("feature_detail", kwargs={'pk':self.pk})
 
     def __str__(self):
-        return self.title
+        return self.title # Return Feature title in Admin View
 
-class Comment(model.Model):
-    post = models.ForeignKey('features.Feature', related_name='comments')
+class Comment(models.Model):
+    post = models.ForeignKey('features.Feature', related_name='comments', on_delete = models.CASCADE)
     author = models.CharField(max_length= 200) # Comment author name
     text = models.TextField() # Comment text
-    create_date = models.DateTimeField(default=timezone.now()) # Creation date
+    create_date = models.DateTimeField(default=timezone.now) # Creation date
     approved_comment = models.BooleanField(default=False) # Boolean status
 
     def approve(self):
@@ -40,4 +40,14 @@ class Comment(model.Model):
         return reverse('feature_list') # Return to feature list view
 
     def __str__(self):
-        return self.text
+        return self.text # Return Comment text in Admin View
+
+class Client(models.Model):
+    client_name = models.CharField(max_length=200) # Client name
+    def __str__(self):
+        return self.client_name # Return Client name in Admin View
+
+class ProdArea(models.Model):
+    prod_area = models.CharField(max_length=200) # Product area
+    def __str__(self):
+        return self.prod_area # Return Product area in Admin View

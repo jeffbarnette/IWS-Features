@@ -1,0 +1,27 @@
+{% extends "features/base.html" %}
+{% block content %}
+<h6 class="border-bottom border-gray pb-2 mb-0">Feature Requests <span class="badge badge-pill bg-light align-text-bottom">{{ feature_list.count }}</span></h6>
+{% for feature in feature_list %}
+<div class="media text-muted pt-3">
+  <div class="img-priority">
+  {% if feature.client_priority == 1 %} <!-- Priority 1 -->
+    <img data-src="holder.js/32x32?theme=thumb&bg=FF4A1E&fg=FF4A1E&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">1</div>
+  {% elif feature.client_priority == 2 %} <!-- Priority 2 -->
+    <img data-src="holder.js/32x32?theme=thumb&bg=FFDE1E&fg=FFDE1E&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">2</div>
+  {% elif feature.client_priority == 3 %} <!-- Priority 3 -->
+    <img data-src="holder.js/32x32?theme=thumb&bg=02B507&fg=02B507&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">3</div>
+  {% else %} <!-- Priority 4 or greater -->
+    <img data-src="holder.js/32x32?theme=thumb&bg=3369FF&fg=3369FF&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">4+</div>
+  {% endif %}
+  </div>
+  <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+    <strong class="d-block text-gray-dark"><a href="{% url 'feature_detail' pk=feature.pk %}">{{ feature.title }}</a></strong>
+    {{feature.description|truncatechars:100}}
+    <small class="d-block text-right">
+      <p>{{ feature.create_date|date:"D M Y" }}<br />
+      <a href="{% url 'feature_detail' pk=feature.pk %}">{{ feature.approve_comments.count }} comments</a></p>
+    </small>
+  </p>
+</div>
+{% endfor %}
+{% endblock %}

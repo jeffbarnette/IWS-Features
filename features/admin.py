@@ -1,3 +1,7 @@
 from django.contrib import admin
+from features.models import Feature, Comment, Client, ProdArea
 
-# Register your models here.
+admin.site.register(Feature)
+admin.site.register(Comment)
+admin.site.register(Client)
+admin.site.register(ProdArea)

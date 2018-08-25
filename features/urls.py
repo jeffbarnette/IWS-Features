@@ -12,5 +12,5 @@ urlpatterns = [
     url(r'^feature/(?P<pk>\d+)/comment/$', views.add_comment_to_feature, name='add_comment_to_feature'),
     url(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_approve'),
     url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name= 'comment_remove'),
-    url(r'feature/(?P<pk>\d+)/publish/$', views.feature_publish, name= 'feature_publish'),
+    url(r'^feature/(?P<pk>\d+)/publish/$', views.feature_publish, name= 'feature_publish'),
 ]

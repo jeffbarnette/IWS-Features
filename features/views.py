@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from features.model import Feature, Comment
+from features.models import Feature, Comment
 from features.forms import FeatureForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
@@ -14,14 +14,12 @@ class AboutView(TemplateView):
     template_name = 'about.html'
 
 class FeatureListView(ListView):
-
     model = Feature
 
-    def get_queryset(self): # Query Django ORM to show by descending order
-        return Feature.objects.filter(create_date__lte=timzezone.now()).order_by('-create_date')
+    def get_queryset(self): # Query Django ORM to show by ascending order by priority
+        return Feature.objects.filter(create_date__lte=timezone.localtime()).order_by('client_priority')
 
 class FeatureDetailView(DetailView):
-
     model = Feature
 
 class CreateFeatureView(LoginRequiredMixin,CreateView):
@@ -38,7 +36,7 @@ class FeatureUpdateView(LoginRequiredMixin, UpdateView):
 
 class FeatureDeleteView(LoginRequiredMixin, DeleteView):
     model = Feature
-    sucess_url = reverse_lazy('feature_list')
+    success_url = reverse_lazy('feature_list')
 
 class DraftListView(LoginRequiredMixin, ListView):
     login_url = '/login/'
@@ -51,9 +49,9 @@ class DraftListView(LoginRequiredMixin, ListView):
 ###########################################################################
 
 @login_required
-def post_publish(request, pk):
+def feature_publish(request, pk):
     post = get_object_or_404(Post,pk=pk)
-    post.punlish
+    post.publish()
     return redirect('feature_detail',pk=pk)
 
 @login_required
