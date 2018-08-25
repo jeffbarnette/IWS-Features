@@ -6,7 +6,8 @@ class FeatureForm(forms.ModelForm):
 
     class Meta():
         model = Feature
-        fields = ('author','title','description','client','client_priority','prod_area','target_date')
+        fields = ('author','title','description','client','client_priority',
+                  'prod_area','target_date')
 
         widgets = {
             'title':forms.TextInput(),
@@ -15,6 +16,21 @@ class FeatureForm(forms.ModelForm):
             'target_date':forms.SelectDateWidget()
 
         }
+
+    def save(self, commit=True):
+        if commit:
+            priority = self.cleaned_data['client_priority']
+            if Feature.objects.filter(client_priority=priority).exists():
+                self.instance.client_priority = None
+                self.instance.save()
+                # Set this feature's client_priority field and change all of the
+                # other client feature request priorities (if needed)
+                self.instance.to(priority)
+            else:
+                self.instance.client_priority = priority
+                self.instance.save()
+
+        return self.instance
 
 class CommentForm(forms.ModelForm):
 

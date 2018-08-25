@@ -1,7 +1,7 @@
 {% extends "features/base.html" %}
 {% block content %}
 
-  <h2>{{ feature.title }}</h2>
+  <h2>{{ feature.title }} <a class="btn btn-outline-secondary float-right" href="{% url 'feature_list' %}">Back</a></h2>
   {% if feature.create_date %}
     <strong>Requested:</strong> {{ feature.create_date|date:"D M Y" }} by {{ feature.author }}<br />
     <strong>Target Delivery Date:</strong> {{ feature.target_date|date:"D M Y" }}<br /><br />
@@ -11,7 +11,7 @@
   <strong>Description:</strong>
   <p>{{ feature.description|safe|linebreaksbr }}</p>
 
-  <strong>Client:</strong> {{ feature.client }}<br />
+  <strong>Client:</strong> {{ feature.client }} ( {{ feature.prod_area }} )<br />
   <strong>Priority:</strong> {{ feature.client_priority }}<br /><br />
 
   {% if user.is_authenticated %}

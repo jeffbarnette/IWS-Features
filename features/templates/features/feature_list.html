@@ -5,13 +5,17 @@
 <div class="media text-muted pt-3">
   <div class="img-priority">
   {% if feature.client_priority == 1 %} <!-- Priority 1 -->
-    <img data-src="holder.js/32x32?theme=thumb&bg=FF4A1E&fg=FF4A1E&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">1</div>
+    <img data-src="holder.js/32x32?theme=thumb&bg=FF4A1E&fg=FF4A1E&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">{{ feature.client_priority }}</div>
   {% elif feature.client_priority == 2 %} <!-- Priority 2 -->
-    <img data-src="holder.js/32x32?theme=thumb&bg=FFDE1E&fg=FFDE1E&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">2</div>
+    <img data-src="holder.js/32x32?theme=thumb&bg=FFDE1E&fg=FFDE1E&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">{{ feature.client_priority }}</div>
   {% elif feature.client_priority == 3 %} <!-- Priority 3 -->
-    <img data-src="holder.js/32x32?theme=thumb&bg=02B507&fg=02B507&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">3</div>
-  {% else %} <!-- Priority 4 or greater -->
-    <img data-src="holder.js/32x32?theme=thumb&bg=3369FF&fg=3369FF&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">4+</div>
+    <img data-src="holder.js/32x32?theme=thumb&bg=02B507&fg=02B507&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">{{ feature.client_priority }}</div>
+  {% elif feature.client_priority == 4 %} <!-- Priority 4 -->
+    <img data-src="holder.js/32x32?theme=thumb&bg=3369FF&fg=3369FF&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">{{ feature.client_priority }}</div>
+  {% elif feature.client_priority >= 5 %} <!-- Priority 5 or greater -->
+    <img data-src="holder.js/32x32?theme=thumb&bg=14C6E0&fg=14C6E0&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">5+</div>
+  {% else %} <!-- Everything else -->
+   <img data-src="holder.js/32x32?theme=thumb&bg=9931F4&fg=9931F4&size=1" alt="{{ feature.client_priority }}" class="mr-2 rounded"><div class="centered">?</div>
   {% endif %}
   </div>
   <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
