@@ -1,9 +1,11 @@
 {% extends "features/base.html" %}
 {% block content %}
+{% load widget_tweaks %}
   <h1>New Feature</h1>
   <form class="feature-form" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-outline-standard" type="submit">Save</button>
+    
+    <button class="btn btn-outline-primary" type="submit">Save</button>
   </form>
 {% endblock %}

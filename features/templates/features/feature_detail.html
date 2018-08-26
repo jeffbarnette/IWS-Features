@@ -2,36 +2,40 @@
 {% block content %}
 
   <h2>{{ feature.title }} <a class="btn btn-outline-secondary float-right" href="{% url 'feature_list' %}">Back</a></h2>
-  {% if feature.create_date %}
-    <strong>Requested:</strong> {{ feature.create_date|date:"D M Y" }} by {{ feature.author }}<br />
-    <strong>Target Delivery Date:</strong> {{ feature.target_date|date:"D M Y" }}<br /><br />
-  {% else %}
-    <a class="btn btn-outline-primary" href="{% url 'feature_publish' pk=feature.pk %}">Publish</a>
-  {% endif %}
-  <strong>Description:</strong>
-  <p>{{ feature.description|safe|linebreaksbr }}</p>
+    {% if feature.create_date %}
+    <p>Requested on {{ feature.create_date|date:"D M d Y" }} by {{ feature.author }}</p>
+    <div class="border-bottom border-gray pb-2 mb-0">
+      <div class="media-body pb-3 mb-0 medium lh-125">
+        <strong>Target Delivery Date:</strong> {{ feature.target_date|date:"D M d Y" }}<br /><br />
+    {% else %}
+        <a class="btn btn-outline-primary" href="{% url 'feature_publish' pk=feature.pk %}">Publish</a>
+    {% endif %}
+        <strong>Description:</strong><br />
+        {{ feature.description|safe|linebreaksbr }} <br /><br />
 
-  <strong>Client:</strong> {{ feature.client }} ( {{ feature.prod_area }} )<br />
-  <strong>Priority:</strong> {{ feature.client_priority }}<br /><br />
+        <strong>Client:</strong> {{ feature.client }} ( {{ feature.prod_area }} Product Area )<br /><br />
+        <strong>Priority:</strong> {{ feature.client_priority }}<br /><br />
 
+    {% if user.is_authenticated %}
+        <a class="btn btn-outline-primary" href="{% url 'feature_edit' pk=feature.pk %}">
+          Edit
+        </a>
+        <a class="btn btn-outline-danger" href="{% url 'feature_remove' pk=feature.pk %}">
+          Remove
+        </a>
+    {% endif %}
+      </div>
+    </div>
   {% if user.is_authenticated %}
-    <a class="btn btn-outline-primary" href="{% url 'feature_edit' pk=feature.pk %}">
-      Edit
-    </a>
-    <a class="btn btn-outline-danger" href="{% url 'feature_remove' pk=feature.pk %}">
-      Remove
-    </a>
-  {% endif %}
-
-  <hr>
-  {% if user.is_authenticated %}
+  <br />
     <a class="btn btn-outline-primary float-right" href="{% url 'add_comment_to_feature' pk=feature.pk %}">Add Comment</a>
   {% endif %}
+  <!-- Comments -->
   <div class="container">
     {% for comment in feature.comments.all %}
     <br>
       {% if user.is_authenticated or comment.approved_comment %}
-        {{ comment.create_date }}
+        {{ comment.create_date|date:"D M d Y" }}
           {% if not comment.approved_comment %}
             <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
               Remove

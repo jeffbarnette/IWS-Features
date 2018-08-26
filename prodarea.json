@@ -1,0 +1,1 @@
+[{"model": "features.prodarea", "pk": 1, "fields": {"prod_area": "Policies"}}, {"model": "features.prodarea", "pk": 2, "fields": {"prod_area": "Billing"}}, {"model": "features.prodarea", "pk": 3, "fields": {"prod_area": "Claims"}}, {"model": "features.prodarea", "pk": 4, "fields": {"prod_area": "Reports"}}]

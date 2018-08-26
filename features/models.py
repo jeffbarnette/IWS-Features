@@ -38,8 +38,8 @@ class Feature(OrderedModelBase):
 class Comment(models.Model):
     post = models.ForeignKey('features.Feature', related_name='comments',
                                                  on_delete = models.CASCADE)
-    author = models.CharField(max_length= 200) # Comment author name
-    text = models.TextField() # Comment text
+    author = models.CharField(max_length= 100) # Comment author name
+    text = models.TextField(max_length=500) # Comment text
     create_date = models.DateTimeField(default=timezone.now) # Creation date
     approved_comment = models.BooleanField(default=False) # Boolean status
 

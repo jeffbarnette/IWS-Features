@@ -22,7 +22,7 @@ class FeatureListView(ListView):
 class FeatureDetailView(DetailView):
     model = Feature
 
-class CreateFeatureView(LoginRequiredMixin,CreateView):
+class CreateFeatureView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     redirect_field_name = 'features/feature_detail.html'
     form_class = FeatureForm
