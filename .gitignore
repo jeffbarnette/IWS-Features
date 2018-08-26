@@ -6,7 +6,19 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
+*.sqlite3
 
 ### System ###
 .DS_Store
+
+### Unit Testing ###
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+
+### Elastic Beanstalk ###
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

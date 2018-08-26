@@ -5,9 +5,9 @@ A CRUD application for managing feature requests and adding comments. Only super
 ## Features
 
 * A fully responsive CRUD web application for viewing and managing feature requests and comments.
-* Uses Django 2.1 and Bootstrap 4.1
-* Color coded priority level indicators from 1-5+ and handles unknown
-* 100% test coverage
+* Uses Django 2.1 and Bootstrap 4.1.
+* Color coded priority level indicators from 1-5+ and also handles unknown levels.
+* Includes sample data in db.json to load into empty SQLite database for testing.
 
 ## Open Source
 

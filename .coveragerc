@@ -1,0 +1,6 @@
+[run]
+include = iws-features/features/*
+
+[report]
+show_missing = True
+precision = 2

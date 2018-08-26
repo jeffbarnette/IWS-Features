@@ -10,9 +10,12 @@ class FeatureForm(forms.ModelForm):
                   'prod_area','target_date')
 
         widgets = {
+            'author':forms.Select(),
             'title':forms.TextInput(),
             'description':forms.Textarea(),
+            'client':forms.Select(),
             'client_priority':forms.NumberInput(),
+            'prod_area':forms.Select(),
             'target_date':forms.SelectDateWidget()
 
         }
