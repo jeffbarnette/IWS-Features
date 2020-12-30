@@ -14,10 +14,10 @@ A CRUD application for managing feature requests and adding comments. Only super
 This application runs on open source software.
 
 * **Python 2.7 / 3.6** - Scripting language the app is written in
-* **Django 2.1** - The backend framework for this project
+* **Django 2.2.13** - The backend framework for this project
 * **Bootstrap 4.1** - Used to make everything responsive and pretty
 * **holder.ja** — Used to create color coded priority badges
-* **Pillow 5.2.0** — Python Imaging Library used for static files
+* **Pillow 7.1.0** — Python Imaging Library used for static files
 * **Django-Ordered-Model 2.1.0** — Django package for rearranging feature request's client priority
 * **Django-Widget-Tweaks 1.4.0** - Django library used for applying CSS classes to form buttons
 * **Coverage.py 4.5.1** — Tool for measuring code coverage through tests
